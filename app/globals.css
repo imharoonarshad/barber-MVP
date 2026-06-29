@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   THEME TOKENS — EDIT THESE PER SHOP
+   Values are R G B channels (space separated, no commas) so Tailwind can apply
+   opacity.  Drop the shop's brand colours in here (pull them from their logo)
+   and the entire site re-skins.  This default is a premium "dark + gold" look,
+   which is what most high-end barber sites use.
+   ============================================================================ */
+:root {
+  /* Palette pulled from the Anderson Lane storefront: yellow signboard,
+     red lettering ("BARBER SHOP" / "OPEN"), red-white-blue barber poles. */
+  --bg: 17 15 13; /* warm near-black page bg */
+  --surface: 26 23 20; /* cards / alternating sections */
+  --surface-2: 37 33 28; /* raised elements, inputs */
+  --ink: 245 243 240; /* primary text (near-white) */
+  --muted: 170 161 150; /* secondary text (warm gray) */
+  --line: 255 255 255; /* borders — always used at low opacity */
+  --accent: 245 182 28; /* SIGNBOARD YELLOW — primary brand + CTA colour */
+  --accent-ink: 26 18 4; /* text placed on top of yellow */
+  --accent-2: 209 49 42; /* BARBER RED — secondary highlight */
+  --accent-2-ink: 255 255 255; /* text placed on top of red */
+  --pole-blue: 42 78 160; /* barber-pole blue (used in the stripe motif) */
+  --success: 74 169 108;
+  --danger: 214 96 96;
+}
+
+/* ============================================================================
+   LIGHT THEME — applied when <html data-theme="light"> (toggled in the nav).
+   Same token names, light values. Accent darkens to a readable amber so it
+   works as text on white; accent-ink flips to white (text on the amber chips).
+   The default (no attribute) stays the dark theme above.
+   ============================================================================ */
+:root[data-theme="light"] {
+  --bg: 250 249 246; /* warm off-white page bg */
+  --surface: 255 255 255; /* white cards / sections */
+  --surface-2: 243 241 237; /* inputs / raised */
+  --ink: 26 23 20; /* near-black text */
+  --muted: 92 86 78; /* warm gray secondary */
+  --line: 17 15 12; /* borders — dark, used at low opacity */
+  --accent: 161 98 7; /* amber-700 — readable on light */
+  --accent-ink: 255 255 255; /* white text on amber */
+  --accent-2: 197 48 42; /* barber red (slightly deeper for light) */
+  --accent-2-ink: 255 255 255;
+  --pole-blue: 42 78 160;
+  --success: 33 140 80;
+  --danger: 200 70 70;
+}
+
+:root[data-theme="light"] body {
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+  /* Respect users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+
+  .section {
+    @apply py-20 sm:py-28;
+  }
+
+  /* Small uppercase label that sits above section headings */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-semibold transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-accent {
+    @apply btn bg-accent text-accent-ink hover:brightness-110 active:brightness-95;
+  }
+  .btn-outline {
+    @apply btn border border-line/20 bg-transparent text-ink hover:border-line/40 hover:bg-line/5;
+  }
+
+  .card {
+    @apply rounded-2xl border border-line/10 bg-surface;
+  }
+
+  /* Classic red/white/blue barber-pole stripe (from the storefront poles). */
+  .barber-stripe {
+    height: 6px;
+    background: repeating-linear-gradient(
+      -45deg,
+      rgb(var(--accent-2)) 0 14px,
+      rgb(255 255 255) 14px 28px,
+      rgb(var(--pole-blue)) 28px 42px
+    );
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-line/15 bg-surface-2 px-4 py-3 text-ink placeholder:text-muted/70 focus:border-accent/60 focus:outline-none focus:ring-2 focus:ring-accent/30;
+  }
+}
