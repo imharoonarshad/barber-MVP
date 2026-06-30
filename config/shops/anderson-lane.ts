@@ -38,8 +38,7 @@ export const andersonLane: Shop = {
 
   // ---- Hero ----
   hero: {
-    image:
-      "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1600&q=80",
+    image: "/shops/anderson-lane/hero-cover.webp",
     headline: "Look sharp.\nFeel sharper.",
     sub: "Walk-ins welcome, appointments preferred. Skilled barbers, hot-towel finishes, and the best straight-razor lineup on Anderson Lane.",
   },
@@ -75,8 +74,7 @@ export const andersonLane: Shop = {
       "For over a decade, Anderson Lane Barber Shop has been Austin's go-to for precision cuts and classic grooming. No gimmicks — just experienced barbers who take the time to get it right.",
       "From skin fades to straight-razor shaves, every chair comes with a hot towel, an honest conversation, and a finish you'll want to show off. We're a neighborhood shop at heart: the kind of place where the barber remembers your name and your usual.",
     ],
-    image:
-      "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1200&q=80",
+    image: "/shops/anderson-lane/inside.webp",
     stats: [
       { value: "15+", label: "Years on Anderson Ln" },
       { value: "12k+", label: "Cuts every year" },
@@ -168,15 +166,12 @@ export const andersonLane: Shop = {
 
   // ---- Gallery ----
   gallery: [
-    "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1596728325488-58c87691e9af?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1521322714240-ee1d383eab62?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1635273051937-a0ddef9573b6?auto=format&fit=crop&w=800&q=80",
+    "/shops/anderson-lane/front-outside.webp",
+    "/shops/anderson-lane/inside.webp",
+    "/shops/anderson-lane/entrance.webp",
+    "/shops/anderson-lane/branding.webp",
+    "/shops/anderson-lane/cutting.webp",
+    "/shops/anderson-lane/outside-shop.jpg",
   ],
 
   // ---- Reviews ----
