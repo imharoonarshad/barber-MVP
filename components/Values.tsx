@@ -1,9 +1,10 @@
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import SectionHeading from "./SectionHeading";
 import { Check } from "./icons";
 import { RevealStagger, RevealItem } from "./Reveal";
 
 export default function Values() {
+  const shop = getShop();
   return (
     <section className="section bg-surface">
       <div className="container-px">

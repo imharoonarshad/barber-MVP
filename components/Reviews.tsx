@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import { Stars, Quote, ArrowRight } from "./icons";
 import { RevealStagger, RevealItem } from "./Reveal";
 
@@ -12,6 +12,7 @@ export default function Reviews({
   withHeading?: boolean;
   preview?: boolean;
 }) {
+  const shop = getShop();
   const items = limit ? shop.reviews.slice(0, limit) : shop.reviews;
   return (
     <section className="section">

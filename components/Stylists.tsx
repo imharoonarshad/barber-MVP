@@ -1,4 +1,4 @@
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import SectionHeading from "./SectionHeading";
 import { RevealStagger, RevealItem } from "./Reveal";
 import StylistCard from "./StylistCard";
@@ -10,6 +10,7 @@ export default function Stylists({
   withHeading?: boolean;
   preview?: boolean;
 }) {
+  const shop = getShop();
   return (
     <section className={`section ${withHeading ? "bg-surface" : ""}`}>
       <div className="container-px">

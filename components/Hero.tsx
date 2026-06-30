@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
-import { shop } from "@/config/shop";
+import { useShop } from "@/components/ShopProvider";
 import { Phone, Pin, Stars, Scissors } from "./icons";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -16,6 +16,7 @@ const up: Variants = {
 };
 
 export default function Hero() {
+  const shop = useShop();
   const tel = shop.phone.replace(/[^\d+]/g, "");
 
   return (

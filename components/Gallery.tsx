@@ -1,4 +1,4 @@
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import SectionHeading from "./SectionHeading";
 import { RevealStagger, RevealItem } from "./Reveal";
 
@@ -11,6 +11,7 @@ export default function Gallery({
   withHeading?: boolean;
   preview?: boolean;
 }) {
+  const shop = getShop();
   const images = limit ? shop.gallery.slice(0, limit) : shop.gallery;
   return (
     <section className="section">

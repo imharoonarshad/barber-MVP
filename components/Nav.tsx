@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
-import { shop, NAV_MENU, type NavMenuItem } from "@/config/shop";
+import { buildNavMenu } from "@/config/shop";
+import type { NavMenuItem } from "@/config/shop";
+import { useShop } from "@/components/ShopProvider";
 import { Phone, Menu, Close, Plus, ChevronDown, ICONS, Scissors } from "./icons";
 import ThemeToggle from "./ThemeToggle";
 
@@ -20,6 +22,8 @@ const item: Variants = {
 };
 
 export default function Nav() {
+  const shop = useShop();
+  const NAV_MENU = buildNavMenu(shop);
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false); // mobile drawer
@@ -79,7 +83,7 @@ export default function Nav() {
           >
             {shop.logoText}
           </motion.span>
-          <span className="hidden text-base font-bold tracking-tight sm:block">
+          <span className="text-base font-bold tracking-tight">
             {shop.shortName}
           </span>
         </Link>

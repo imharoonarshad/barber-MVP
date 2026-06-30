@@ -1,36 +1,50 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
+import { themeCss, rgbChannels } from "@/lib/theme";
+import { ShopProvider } from "@/components/ShopProvider";
 import PitchBanner from "@/components/PitchBanner";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import StickyCallBar from "@/components/StickyCallBar";
 
-export const metadata: Metadata = {
-  title: `${shop.name} — ${shop.city} Barbershop`,
-  description: shop.tagline,
-  openGraph: {
-    title: `${shop.name} — ${shop.city} Barbershop`,
+export function generateMetadata(): Metadata {
+  const shop = getShop();
+  const title = `${shop.name} — ${shop.city} Barbershop`;
+  return {
+    title,
     description: shop.tagline,
-    images: [shop.hero.image],
-    type: "website",
-  },
-  icons: {
-    // Inline SVG favicon with the shop's brand mark — no asset file needed.
-    icon: `data:image/svg+xml,${encodeURIComponent(
-      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="rgb(198,161,82)"/><text x="16" y="22" font-family="Georgia,serif" font-size="14" font-weight="bold" text-anchor="middle" fill="rgb(18,16,12)">${shop.logoText}</text></svg>`,
-    )}`,
-  },
-};
+    openGraph: {
+      title,
+      description: shop.tagline,
+      images: [shop.hero.image],
+      type: "website",
+    },
+    icons: {
+      // Inline SVG favicon with the shop's brand mark — no asset file needed.
+      icon: `data:image/svg+xml,${encodeURIComponent(
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="${rgbChannels(
+          shop.theme.dark.accent,
+        )}"/><text x="16" y="22" font-family="Georgia,serif" font-size="12" font-weight="bold" text-anchor="middle" fill="${rgbChannels(
+          shop.theme.dark.accentInk,
+        )}">${shop.logoText}</text></svg>`,
+      )}`,
+    },
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: "#0e0e10",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const shop = getShop();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Per-shop colour palette — overrides the defaults in globals.css. */}
+        <style dangerouslySetInnerHTML={{ __html: themeCss(shop.theme) }} />
         {/* Set the saved theme before paint so there's no flash. Defaults to dark. */}
         <script
           dangerouslySetInnerHTML={{
@@ -47,12 +61,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <div className="barber-stripe" aria-hidden />
-        <PitchBanner />
-        <Nav />
-        <main>{children}</main>
-        <Footer />
-        <StickyCallBar />
+        <ShopProvider shop={shop}>
+          <div className="barber-stripe" aria-hidden />
+          <PitchBanner />
+          <Nav />
+          <main>{children}</main>
+          <Footer />
+          <StickyCallBar />
+        </ShopProvider>
       </body>
     </html>
   );

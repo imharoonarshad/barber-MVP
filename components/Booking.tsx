@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { shop } from "@/config/shop";
+import { useShop } from "@/components/ShopProvider";
 import { Check, Clock, Phone, Scissors, Star } from "./icons";
 
 /* ----------------------------- helpers (mock) ----------------------------- */
@@ -56,6 +56,7 @@ function nextDays(count: number): DayOption[] {
 /* -------------------------------- component ------------------------------- */
 
 export default function Booking() {
+  const shop = useShop();
   const days = useMemo(() => nextDays(14), []);
   const [serviceIdx, setServiceIdx] = useState(0);
   const [barberIdx, setBarberIdx] = useState<number>(-1); // -1 = any available

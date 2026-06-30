@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { shop } from "@/config/shop";
+import { useShop } from "@/components/ShopProvider";
 import { Phone } from "./icons";
 
 /** Mobile-only sticky action bar — slides up after the hero scrolls away. */
 export default function StickyCallBar() {
+  const shop = useShop();
   const [show, setShow] = useState(false);
   const tel = shop.phone.replace(/[^\d+]/g, "");
 
@@ -26,7 +27,7 @@ export default function StickyCallBar() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 80, opacity: 0 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-x-0 bottom-0 z-40 border-t border-line/10 bg-bg/90 p-3 backdrop-blur-md lg:hidden"
+          className="fixed inset-x-0 bottom-0 z-40 border-t border-line/10 bg-bg/90 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md lg:hidden"
         >
           <div className="container-px flex gap-3">
             <a href={`tel:${tel}`} className="btn-outline flex-1">

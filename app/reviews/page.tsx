@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import PageHero from "@/components/PageHero";
 import Reviews from "@/components/Reviews";
 import { Stars } from "@/components/icons";
 import CTABand from "@/components/CTABand";
 
-export const metadata: Metadata = {
-  title: `Reviews — ${shop.name}`,
-  description: `${shop.rating}★ from ${shop.reviewCount} reviews. See why ${shop.city} trusts ${shop.name}.`,
-};
+export function generateMetadata(): Metadata {
+  const shop = getShop();
+  return {
+    title: `Reviews — ${shop.name}`,
+    description: `${shop.rating}★ from ${shop.reviewCount} reviews. See why ${shop.city} trusts ${shop.name}.`,
+  };
+}
 
 export default function ReviewsPage() {
+  const shop = getShop();
   // Quick rating distribution for the summary (illustrative for the demo).
   const dist = [
     { stars: 5, pct: 86 },

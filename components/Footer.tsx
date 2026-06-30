@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { shop, pitch, NAV_LINKS } from "@/config/shop";
+import { NAV_LINKS } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import { Instagram, Facebook, Phone, Pin } from "./icons";
 
 export default function Footer() {
+  const shop = getShop();
   const tel = shop.phone.replace(/[^\d+]/g, "");
   return (
     <footer className="border-t border-line/10 bg-surface">
-      <div className="container-px py-16">
+      <div className="container-px pt-16 pb-[calc(8rem+env(safe-area-inset-bottom))] lg:py-16">
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
@@ -82,11 +84,11 @@ export default function Footer() {
           <p>
             © {shop.established}–present {shop.name}. All rights reserved.
           </p>
-          {pitch.show ? (
+          {shop.pitch.show ? (
             <p>
               Want this as your real website?{" "}
               <a
-                href={`mailto:${pitch.ctaEmail}?subject=${encodeURIComponent(
+                href={`mailto:${shop.pitch.ctaEmail}?subject=${encodeURIComponent(
                   "I want my barbershop website",
                 )}`}
                 className="font-semibold text-accent hover:underline"

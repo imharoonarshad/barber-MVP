@@ -2,19 +2,21 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { shop } from "@/config/shop";
+import { useShop } from "@/components/ShopProvider";
 import { ChevronDown } from "./icons";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 
 /** Animated FAQ accordion (single-open) with smooth height + fade transitions. */
 export default function Faq({
-  items = shop.faqs,
+  items,
   withHeading = true,
 }: {
   items?: { q: string; a: string }[];
   withHeading?: boolean;
 }) {
+  const shop = useShop();
+  const resolvedItems = items ?? shop.faqs;
   const [open, setOpen] = useState<number | null>(null);
 
   return (
@@ -28,7 +30,7 @@ export default function Faq({
           />
         )}
         <Reveal className="mx-auto mt-10 max-w-3xl divide-y divide-line/10 overflow-hidden rounded-2xl border border-line/10 bg-surface">
-          {items.map((f, i) => {
+          {resolvedItems.map((f, i) => {
             const isOpen = open === i;
             return (
               <div key={f.q} className="px-6">

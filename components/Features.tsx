@@ -1,9 +1,10 @@
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import { ICONS, Scissors } from "./icons";
 import { RevealStagger, RevealItem } from "./Reveal";
 
 /** "Why choose us" — the four feature cards. */
 export default function Features() {
+  const shop = getShop();
   return (
     <section className="section">
       <div className="container-px">

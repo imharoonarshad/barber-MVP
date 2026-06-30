@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import { Phone } from "./icons";
 import Reveal from "./Reveal";
 
@@ -11,6 +11,7 @@ export default function CTABand({
   title?: string;
   subtitle?: string;
 }) {
+  const shop = getShop();
   const tel = shop.phone.replace(/[^\d+]/g, "");
   return (
     <section className="section">

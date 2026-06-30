@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import PageHero from "@/components/PageHero";
 import Gallery from "@/components/Gallery";
 import CTABand from "@/components/CTABand";
 
-export const metadata: Metadata = {
-  title: `Gallery — ${shop.name}`,
-  description: `Step inside ${shop.name} and see the cuts, fades and finishes our barbers are known for.`,
-};
+export function generateMetadata(): Metadata {
+  const shop = getShop();
+  return {
+    title: `Gallery — ${shop.name}`,
+    description: `Step inside ${shop.name} and see the cuts, fades and finishes our barbers are known for.`,
+  };
+}
 
 export default function GalleryPage() {
   return (

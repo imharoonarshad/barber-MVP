@@ -2,24 +2,26 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { shop } from "@/config/shop";
+import { useShop } from "@/components/ShopProvider";
 
 /** Compact banner at the top of every inner page (about, services, etc.). */
 export default function PageHero({
   eyebrow,
   title,
   subtitle,
-  image = shop.hero.image,
+  image,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   image?: string;
 }) {
+  const shop = useShop();
+  const resolvedImage = image ?? shop.hero.image;
   return (
     <section className="relative isolate overflow-hidden border-b border-line/10">
       <motion.img
-        src={image}
+        src={resolvedImage}
         alt=""
         aria-hidden
         initial={{ scale: 1.12 }}

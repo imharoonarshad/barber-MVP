@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import { ArrowRight } from "./icons";
 import Reveal from "./Reveal";
 
@@ -10,6 +10,7 @@ export default function About({
   withHeading?: boolean;
   preview?: boolean;
 }) {
+  const shop = getShop();
   return (
     <section className="section bg-surface">
       <div className="container-px grid items-center gap-12 lg:grid-cols-2">

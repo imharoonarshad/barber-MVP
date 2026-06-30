@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import PageHero from "@/components/PageHero";
 import Contact from "@/components/Contact";
 import LocationHours from "@/components/LocationHours";
 
-export const metadata: Metadata = {
-  title: `Contact & Location — ${shop.name}`,
-  description: `Find ${shop.name} at ${shop.address}. Call ${shop.phone} or send us a message.`,
-};
+export function generateMetadata(): Metadata {
+  const shop = getShop();
+  return {
+    title: `Contact & Location — ${shop.name}`,
+    description: `Find ${shop.name} at ${shop.address}. Call ${shop.phone} or send us a message.`,
+  };
+}
 
 export default function ContactPage() {
+  const shop = getShop();
   return (
     <>
       <PageHero

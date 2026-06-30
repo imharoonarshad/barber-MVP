@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { shop } from "@/config/shop";
+import { useShop } from "@/components/ShopProvider";
 import SectionHeading from "./SectionHeading";
 
 /** Vertical timeline of shop milestones — each entry slides in on scroll. */
 export default function Milestones() {
+  const shop = useShop();
   return (
     <section className="section">
       <div className="container-px">

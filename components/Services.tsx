@@ -1,4 +1,5 @@
-import { shop, type Service } from "@/config/shop";
+import { getShop } from "@/lib/shop";
+import type { Service } from "@/config/shop";
 import SectionHeading from "./SectionHeading";
 import { RevealStagger, RevealItem } from "./Reveal";
 
@@ -31,6 +32,7 @@ export default function Services({
   variant?: "preview" | "full";
   withHeading?: boolean;
 }) {
+  const shop = getShop();
   if (variant === "preview") {
     const featured = shop.services.filter((s) => s.popular).slice(0, 3);
     const picks = featured.length >= 3 ? featured : shop.services.slice(0, 3);

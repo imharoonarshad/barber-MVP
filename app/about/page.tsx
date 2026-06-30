@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import PageHero from "@/components/PageHero";
 import About from "@/components/About";
 import Milestones from "@/components/Milestones";
 import Values from "@/components/Values";
 import CTABand from "@/components/CTABand";
 
-export const metadata: Metadata = {
-  title: `About — ${shop.name}`,
-  description: `The story behind ${shop.name}, ${shop.city}. ${shop.tagline}`,
-};
+export function generateMetadata(): Metadata {
+  const shop = getShop();
+  return {
+    title: `About — ${shop.name}`,
+    description: `The story behind ${shop.name}, ${shop.city}. ${shop.tagline}`,
+  };
+}
 
 export default function AboutPage() {
+  const shop = getShop();
   return (
     <>
       <PageHero

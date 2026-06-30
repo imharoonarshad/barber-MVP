@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { shop } from "@/config/shop";
+import { useShop } from "@/components/ShopProvider";
 import { Pin, Clock, Phone } from "./icons";
 
 export default function LocationHours() {
+  const shop = useShop();
   const [todayName, setTodayName] = useState<string | null>(null);
 
   useEffect(() => {

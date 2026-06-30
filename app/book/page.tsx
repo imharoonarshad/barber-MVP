@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import { shop } from "@/config/shop";
+import { getShop } from "@/lib/shop";
 import PageHero from "@/components/PageHero";
 import Booking from "@/components/Booking";
 import Faq from "@/components/Faq";
 import { RevealStagger, RevealItem } from "@/components/Reveal";
 
-export const metadata: Metadata = {
-  title: `Book an Appointment — ${shop.name}`,
-  description: `Book your chair online at ${shop.name}, ${shop.city}. Pick your service, barber and time in under a minute.`,
-};
+export function generateMetadata(): Metadata {
+  const shop = getShop();
+  return {
+    title: `Book an Appointment — ${shop.name}`,
+    description: `Book your chair online at ${shop.name}, ${shop.city}. Pick your service, barber and time in under a minute.`,
+  };
+}
 
 export default function BookPage() {
+  const shop = getShop();
   return (
     <>
       <PageHero

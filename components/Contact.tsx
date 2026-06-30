@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { shop } from "@/config/shop";
+import { useShop } from "@/components/ShopProvider";
 import { Check, Phone, Pin } from "./icons";
 
 export default function Contact() {
+  const shop = useShop();
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const tel = shop.phone.replace(/[^\d+]/g, "");
