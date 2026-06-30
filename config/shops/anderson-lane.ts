@@ -6,7 +6,11 @@ import type { Shop } from "../types";
    ============================================================================ */
 export const andersonLane: Shop = {
   slug: "anderson-lane",
-  domains: ["andersonlanebarber.com", "www.andersonlanebarber.com"],
+  domains: [
+    "anderson-lane-mvp.vercel.app",
+    "andersonlanebarber.com",
+    "www.andersonlanebarber.com",
+  ],
 
   // ---- Identity ----
   name: "Anderson Lane Barber Shop",

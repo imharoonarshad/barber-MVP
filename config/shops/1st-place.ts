@@ -9,7 +9,11 @@ import type { Shop } from "../types";
    ============================================================================ */
 export const firstPlace: Shop = {
   slug: "1st-place",
-  domains: ["1stplacebarbering.com", "www.1stplacebarbering.com"],
+  domains: [
+    "1st-place-mvp.vercel.app",
+    "1stplacebarbering.com",
+    "www.1stplacebarbering.com",
+  ],
 
   // ---- Identity ----
   name: "1st Place Barbering & ACA Salon",
